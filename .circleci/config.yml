@@ -13,8 +13,10 @@ jobs:
             apk add --update ansible # install the dependencies needed for your playbook
       - run:
           name: Configure server
+          environment:
+            ANSIBLE_HOST_KEY_CHECKING: False
           command: |
-            echo yes
+            echo yes |
             ansible-playbook -i inventory.txt playbook.yml
 
 workflows:

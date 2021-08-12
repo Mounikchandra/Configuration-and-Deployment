@@ -3,6 +3,8 @@ jobs:
   configure_infrastructure:
     docker:
       - image: python:3.7-alpine3.11
+        environment:  
+          ANSIBLE_HOST_KEY_CHECKING: false
     steps:
       - checkout
       - add_ssh_keys:
@@ -14,7 +16,7 @@ jobs:
       - run:
           name: Configure server
           environment:
-            ANSIBLE_HOST_KEY_CHECKING: False
+            ANSIBLE_HOST_KEY_CHECKING: false
           command: |
             echo yes |
             ansible-playbook -i inventory.txt playbook.yml
